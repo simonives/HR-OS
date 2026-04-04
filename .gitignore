@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+*.tsbuildinfo
+.DS_Store
+
+# Reference materials — copyrighted EPUBs/PDFs (keep README only)
+references/**/*.epub
+references/**/*.pdf
+references/**/*.mobi
