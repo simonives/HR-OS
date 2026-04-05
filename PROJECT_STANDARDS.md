@@ -67,14 +67,17 @@ ingested_date: [Date]
 When a new EPUB reference is added to the system, it must be programmatically extracted and distilled.
 
 **Execution Workflow:**
-1.  **Stage:** Isolate the target EPUB file within `.ingestion_staging/` at the repository root.
-2.  **Extract:** Run the `epub2md` package to convert the package to markdown recursively.
+1.  **Stage:** Place the raw EPUB file within `/ingestion_chamber/` at the repository root.
+2.  **Extract:** Within the chamber, run `epub2md` to convert the package into markdown.
     ```bash
-    mkdir -p .ingestion_staging
-    cp "path/to/reference.epub" .ingestion_staging/pilot.epub
-    cd .ingestion_staging
+    cd ingestion_chamber
+    mkdir -p tmp_extract
+    cp "reference.epub" tmp_extract/pilot.epub
+    cd tmp_extract
     epub2md -c pilot.epub
     ```
-3.  **Consume & Distil:** Read the generated child chapters sequentially. Do not guess the framework; infer the thesis strictly *after* scanning the output.
-4.  **Route:** Draft the Parent Document into the appropriate domain directory, and move the populated Markdown files into a sibling `references/` directory.
-5.  **Clean:** Purge `.ingestion_staging/`.
+3.  **Consume & Distil:** Read the generated child chapters. Infer the thesis and frameworks strictly *after* scanning the output to maintain the author's intent.
+4.  **Deploy:**
+    *   Draft the Parent Document into the appropriate `/src/resources/[pillar]/[domain]` directory.
+    *   Move the child markdown files into a sibling `/references/[title]/` folder.
+5.  **Purge:** Permanently delete the original EPUB from the `/ingestion_chamber/` once ingestion is successfully verified.
