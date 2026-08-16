@@ -53,6 +53,16 @@ A minimal `ModelClient` interface (`complete(messages, tools?) → response`) wi
 
 **Native tool use.** Each provider adapter reports which native tools it exposes (Anthropic: web search, code execution, bash, file tools, etc.; other providers expose their own, different sets). A gate stage requests a *capability* (e.g. "web search would help verify this benchmark"), not a specific tool name — the orchestrator resolves the request against whatever the active provider actually supports, and gates degrade gracefully (fall back to resource-library-only grounding) on a provider that lacks it. This keeps gate definitions provider-agnostic while still using each provider's real native tools rather than reimplementing them.
 
+### External capability registry (MCP servers, platform connectors)
+
+The capability-request pattern used for native model tools extends one level further, to whatever else is plugged into the surrounding platform — a locally-connected MCP server (e.g. a SharePoint server holding live salary benchmarking data), or a connector in a host like Microsoft Copilot Studio (e.g. Snowflake, ServiceNow). This is deliberately not hard-coded per capability — the value is letting a gate say "salary-benchmarking data would help here" and having whatever's actually available in *this* deployment answer, without hr-os needing to know in advance what that will be.
+
+**Declared registry, platform-populated where possible.** Discovery differs fundamentally by host: MCP hosts can enumerate connected servers and their tools live at runtime; Copilot Studio connectors are wired up at design time in the Studio and aren't discoverable by a running agent. hr-os handles both through one mechanism — a per-deployment capability registry mapping a capability name to a concrete resolver (`salary-benchmarking -> mcp:sharepoint-server/query_comp_data`, `ticketing -> connector:servicenow/create_case`). Where the host supports live enumeration, the registry auto-populates at startup; where it doesn't, an admin declares the mapping once at deployment. Gates request capabilities by name and never care how the request resolved.
+
+**Always human-approval for external sources.** Any external MCP server or connector is treated as an untrusted, case-specific data source. When a gate finds a registry entry it could use, it pauses and shows the practitioner what's available and why it might help (e.g. "A SharePoint MCP server (comp-data) may have current salary benchmarks for this role — use it?") rather than querying automatically. This holds regardless of whether the underlying operation is read-only — it's a governance posture, not a risk-based auto/manual split, matching the audit trail's existing governance-grade bar. The audit log records the external source, whether it was offered, whether it was used, and who approved use.
+
+This is the same resolution order as native tools, extended: a gate's capability request first checks the model provider's native tools, then the deployment's external capability registry, then falls back to resource-library-only grounding if nothing resolves.
+
 ### Resource grounding
 
 Each gate stage declares which `src/resources/` paths are relevant (e.g. the workforce-plan gate points at `business_partnering/workforce_planning/`). The orchestrator reads and injects that content into the model call at that stage. Simple file-based retrieval — no vector DB — the library is curated and small enough to address by path.
@@ -104,3 +114,4 @@ Scope: one domain, five gates, full audit trail, Anthropic only (provider abstra
 - Any domain workflow beyond workforce planning (employee relations investigation, policy design, etc. — same pattern, future slices).
 - Vector search / semantic retrieval over `src/resources/` (file-path-based grounding is sufficient at current library size).
 - A rules-engine/DSL for authoring gates without touching code.
+- Any populated external capability registry entries (SharePoint MCP, Copilot Studio connectors, etc.) — the registry mechanism and resolution order are built, but the MVP ships with an empty registry; resource-library grounding is the only fallback exercised end-to-end.
