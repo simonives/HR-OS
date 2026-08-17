@@ -3,6 +3,8 @@ dist/
 .env
 *.tsbuildinfo
 .DS_Store
+.worktrees/
+.superpowers/
 
 # Reference materials — copyrighted EPUBs/PDFs (keep README only)
 references/**/*.epub
