@@ -11,7 +11,7 @@ All documentation, output generation, and structural naming conventions must str
 *   **Language:** Australian English (e.g., `organise`, `centres_of_excellence`, `programme`).
 *   **Voice:** Strictly Active Voice. Passive constructions are forbidden.
 *   **Tone:** Formal, collaborative, and strategic. Avoid cliché jargon (e.g., "boiling the ocean", "synergistic paradigms").
-*   **Audience:** Targeted toward Senior Leadership and Executive Committees at large enterprises.
+*   **Audience:** Targeted toward Senior Leadership, HR Practitioners, and People Leaders.
 
 ---
 
@@ -30,7 +30,7 @@ The `/resources/` directory maintains a strict, functional HR taxonomy based on 
 
 ## 3. The Parent-Child Knowledge Hierarchy
 
-To optimise the AI's Context Window, unstructured reference material (such as full-text EPUBs) **must not** be read verbatim by a skill at runtime. They must be ingested using a Parent-Child architecture:
+To optimise the AI's Context Window, unstructured reference material (such as full-text Policies, EPUBs, PDFs, etc.) **must not** be read verbatim by a skill at runtime. They must be ingested using a Parent-Child architecture:
 
 *   **The Parent Node (`<title>_summary.md`):** A distilled, high-level summary resting at the root of the domain. It features an Executive Thesis, key models, and crucially, a **Context Routing Table** linking specific use-cases directly to the child files.
 *   **The Child Nodes (`references/<title>/chapter_**.md`):** Verbatim, parsed markdown chunks housed discretely in a references sub-folder. The AI only traverses to these files if directed by the Parent Node.
