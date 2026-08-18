@@ -1,4 +1,4 @@
-# hr-os
+# HR-OS
 
 A Claude Code / Cowork plugin that brings gate discipline to enterprise HR practice. It's modelled philosophically on [Superpowers](https://github.com/obra/superpowers): the same rigour Superpowers applies to a software dev/CI-CD lifecycle, applied instead to how a mature HR function actually operates. Workforce planning before hiring. Structured investigation before disciplinary action. Evidence-based policy design. Proper consultation before organisational change.
 
@@ -31,21 +31,21 @@ demand-signal-capture (hr-os-problem-framing, + demand evidence)
 
 ## Installing
 
-hr-os isn't on Anthropic's official `claude-plugins-official` marketplace. It's self-hosted: this repo carries its own marketplace manifest (`.claude-plugin/marketplace.json`), and adding it points Claude Code at this specific repo, not any curated directory.
+HR-OS isn't on Anthropic's official `claude-plugins-official` marketplace. It's self-hosted: this repo carries its own marketplace manifest (`.claude-plugin/marketplace.json`), and adding it points Claude Code at this specific repo, not any curated directory.
 
 ### Claude Code
 
 From any directory, no clone required:
 
 ```bash
-claude plugin marketplace add simonives/hr-os
+claude plugin marketplace add simonives/HR-OS
 claude plugin install hr-os@hr-os-dev
 ```
 
 Or, from inside an interactive Claude Code session:
 
 ```
-/plugin marketplace add simonives/hr-os
+/plugin marketplace add simonives/HR-OS
 /plugin install hr-os
 ```
 
@@ -60,7 +60,7 @@ Either invoke a skill directly by name (e.g. `hr-os-workforce-planning`) when wo
 
 ### Claude Desktop
 
-Desktop's local installer takes a packaged file, not a repository. Download the latest `hr-os-vX.Y.Z.zip` from the [Releases page](https://github.com/simonives/hr-os/releases), then add it through Desktop's plugin settings (browse to the file, or drag it in). Each tagged release publishes this zip automatically.
+Desktop's local installer takes a packaged file, not a repository. Download the latest `hr-os-vX.Y.Z.zip` from the [Releases page](https://github.com/simonives/HR-OS/releases), then add it through Desktop's plugin settings (browse to the file, or drag it in). Each tagged release publishes this zip automatically.
 
 ## Example prompts
 

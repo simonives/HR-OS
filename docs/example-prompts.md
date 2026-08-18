@@ -1,4 +1,4 @@
-# hr-os example prompts
+# HR-OS example prompts
 
 A working set of prompts for trying `hr-os-workforce-planning` (the MVP workflow) after installing the plugin. The first group gets you through a normal run. The second group shows the gates actually holding under pressure, worth trying for real confidence in how they behave.
 
