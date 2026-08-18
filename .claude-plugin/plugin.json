@@ -1,12 +1,18 @@
 {
   "name": "hr-os",
   "description": "Gated Claude Code skills for enterprise HR practice: workforce planning, evidence-based policy design, and process discipline modelled on Superpowers, applied to how a mature HR function operates.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Simon Ives"
   },
   "homepage": "https://github.com/simonives/hr-os",
   "repository": "https://github.com/simonives/hr-os",
   "license": "MIT",
-  "keywords": ["hr", "human resources", "workforce planning", "governance", "skills"]
+  "keywords": [
+    "hr",
+    "human resources",
+    "workforce planning",
+    "governance",
+    "skills"
+  ]
 }
