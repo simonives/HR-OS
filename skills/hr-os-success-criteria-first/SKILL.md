@@ -1,6 +1,6 @@
 ---
 name: hr-os-success-criteria-first
-description: Use before designing any HR intervention — a policy, a role, a workforce plan — to agree success criteria and their link to an organisational purpose or target before doing the design work. Part of the hr-os plugin.
+description: You MUST use this before designing any HR intervention — a policy, a role, a workforce plan — to agree success criteria and their link to an organisational purpose or target before doing the design work. Part of the hr-os plugin.
 ---
 
 # Success Criteria First

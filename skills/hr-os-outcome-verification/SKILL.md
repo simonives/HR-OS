@@ -1,6 +1,6 @@
 ---
 name: hr-os-outcome-verification
-description: Use before declaring an HR case or initiative complete — confirms the outcome actually matches what was decided and captures whether anything should change going forward. Part of the hr-os plugin.
+description: You MUST use this before declaring an HR case or initiative complete — confirms the outcome actually matches what was decided and captures whether anything should change going forward. Part of the hr-os plugin.
 ---
 
 # Outcome Verification

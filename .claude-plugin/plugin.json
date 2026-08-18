@@ -7,6 +7,6 @@
   },
   "homepage": "https://github.com/simonives/hr-os",
   "repository": "https://github.com/simonives/hr-os",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": ["hr", "human resources", "workforce planning", "governance", "skills"]
 }

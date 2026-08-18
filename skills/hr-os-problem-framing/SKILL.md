@@ -1,6 +1,6 @@
 ---
 name: hr-os-problem-framing
-description: Use before any HR intervention — a policy change, an organisational change, a new or backfilled role, a hiring decision — to establish the problem, stakeholders, constraints, and complexity before a solution is proposed. Part of the hr-os plugin.
+description: You MUST use this before any HR intervention — a policy change, an organisational change, a new or backfilled role, a hiring decision — to establish the problem, stakeholders, constraints, and complexity before a solution is proposed. Part of the hr-os plugin.
 ---
 
 # HR Problem Framing
