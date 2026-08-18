@@ -174,7 +174,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build plugin zip
-        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD
+        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD -- .claude-plugin skills README.md LICENSE
       - name: Create GitHub Release with artifact
         env:
           GH_TOKEN: ${{ github.token }}
@@ -182,6 +182,8 @@ jobs:
 ```
 
 Uses only the official `actions/checkout` action plus the `gh` CLI (preinstalled on GitHub-hosted runners) and the workflow's own `GITHUB_TOKEN`, no third-party actions. Fires automatically on any `v*` tag push, including the real `v1.0.0` tag in Task 6, so this workflow both produces the test artifact now and the real release artifact later from the same, already-tested path.
+
+**Path filter is load-bearing, not cosmetic.** An unfiltered `git archive` (the whole repo, ~5.3MB compressed, `resources/` alone is 11MB uncompressed) was tested first and failed silently in Claude Desktop's installer (no error message, just a stall and failure after "thinking for a while"). A lean archive containing only `.claude-plugin/`, `skills/`, `README.md`, and `LICENSE` (~14KB) installed successfully. `resources/`, `docs/`, `CLAUDE.md`, and `PROJECT_STANDARDS.md` are dev/repo-facing content, not needed by the installed plugin at runtime (`hr-os-workforce-planning`'s one reference into `resources/business_partnering/workforce_planning/` already degrades gracefully per Amendment 1 when that path is absent), so the lean package is the correct shape to ship, not just a workaround for the failure.
 
 - [ ] **Step 2: Commit and push**
 
@@ -191,16 +193,18 @@ git commit -m "ci: package plugin as a zip release artifact on version tag push"
 git push origin main
 ```
 
-- [ ] **Step 3: Produce a test artifact without waiting for the v1.0.0 tag**
+- [x] **Step 3: Produce a test artifact without waiting for the v1.0.0 tag**
 
 Before Gate A, verify the packaging actually works and produces something Desktop can install, without cutting the real release tag early:
 
 ```bash
-git archive --format=zip -o /tmp/hr-os-desktop-test.zip HEAD
-unzip -l /tmp/hr-os-desktop-test.zip | grep -E "^\s|skills/|\.claude-plugin/"
+git archive --format=zip -o ~/Desktop/hr-os-desktop-test-lean.zip HEAD -- .claude-plugin skills README.md LICENSE
+unzip -l ~/Desktop/hr-os-desktop-test-lean.zip
 ```
 
 Expected: the listing includes `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and all five `skills/*/SKILL.md` files.
+
+**Done.** First attempt used an unfiltered archive (whole repo) and failed silently in Desktop's installer. Rebuilt with the path filter above (lean, ~14KB), installed successfully.
 
 - [ ] **Step 4: [HUMAN] Install and verify in Claude Desktop**
 

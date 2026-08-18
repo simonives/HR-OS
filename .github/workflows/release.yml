@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build plugin zip
-        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD
+        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD -- .claude-plugin skills README.md LICENSE
       - name: Create GitHub Release with artifact
         env:
           GH_TOKEN: ${{ github.token }}
