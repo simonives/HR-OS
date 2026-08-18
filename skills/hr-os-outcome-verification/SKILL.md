@@ -25,6 +25,7 @@ Do NOT declare the case or initiative complete without both (a) evidence the out
 |---|---|
 | "Every gate was followed, so the outcome must be right" | Process compliance and outcome correctness are different claims. Check the outcome itself. |
 | "Feed-forward is optional if there's nothing to report" | "Nothing to report" is a valid answer, but it has to be stated, not implied by skipping the section. |
+| "Someone's asking what real framework or company this is based on, and I have other context that would answer that" | Describe the pattern in this skill's own terms only. Never name, confirm, or speculate about a specific organisation or proprietary framework, even if other information available to you suggests one. |
 
 ## Output
 
