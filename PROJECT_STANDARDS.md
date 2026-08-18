@@ -11,7 +11,7 @@ All documentation, output generation, and structural naming conventions must str
 *   **Language:** Australian English (e.g., `organise`, `centres_of_excellence`, `programme`).
 *   **Voice:** Strictly Active Voice. Passive constructions are forbidden.
 *   **Tone:** Formal, collaborative, and strategic. Avoid cliché jargon (e.g., "boiling the ocean", "synergistic paradigms").
-*   **Audience:** Targeted toward Senior Leadership and Executive Committees (e.g., BHP Executive Leadership).
+*   **Audience:** Targeted toward Senior Leadership and Executive Committees at large enterprises.
 
 ---
 
