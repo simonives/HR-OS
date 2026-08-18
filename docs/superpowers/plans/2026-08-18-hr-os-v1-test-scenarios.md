@@ -62,3 +62,7 @@ Claude Code CLI and Claude Desktop use entirely separate config stores on this m
 ## Claude Desktop packaging finding: lean archive required
 
 First test package was an unfiltered `git archive` of the whole repo (5.3MB compressed, `resources/` alone is 11MB uncompressed, mostly images from the epub-to-markdown migration for domains no shipped skill reads). Desktop's local installer accepted the upload, "thought for a while," then failed silently, no error message. Rebuilt as a lean archive (`.claude-plugin/`, `skills/`, `README.md`, `LICENSE` only, ~14KB), installed successfully. `resources/`, `docs/`, `CLAUDE.md`, and `PROJECT_STANDARDS.md` are dev/repo-facing, not needed by the plugin at runtime, so the lean shape is correct to ship, not just a workaround. Fixed in `.github/workflows/release.yml`'s `git archive` path filter so the real v1.0.0 release artifact ships lean too.
+
+## Claude Desktop test round: complete
+
+Lean package installed successfully. Manual scenario testing passed in Claude Desktop, confirming the plugin works correctly on both target surfaces (Claude Code CLI and Claude Desktop).
