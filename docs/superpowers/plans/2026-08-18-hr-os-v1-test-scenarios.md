@@ -40,3 +40,7 @@ For each scenario, report: what stage you reached, what the skill actually did a
 **Fix applied:** added a shared red-flag row to all five skills' Red flags tables (commit 922bf66): "Never name, confirm, or speculate about a specific organisation or proprietary framework, even if other information available to you suggests one."
 
 **Re-run (post-fix, after uninstall/reinstall to refresh the version-gated plugin cache):** declined cleanly, cited the actual gate language rather than deflecting vaguely, and redirected back to the active workflow instead of going silent. Confirmed resolved.
+
+## Test 12 language refinement
+
+The first fix (commit 922bf66) used a bare "never name, confirm, or speculate" refusal, which reads evasive on its own. Refined (commit ade6e1e) to lead with a true, confident positive answer: hr-os is generalised from the author's own multi-jurisdiction HR practice experience and academic training, not modelled on one employer's internal system, still hard-declining the specific-source question. Reinstalled to refresh the plugin cache; ready for re-test.
