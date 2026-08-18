@@ -1,6 +1,6 @@
 # hr-os v1.0.0 Hardening and Release Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to work through this plan. Steps use checkbox (`- [ ]`) syntax for tracking. Unlike a typical implementation plan, several steps in this plan are executed by Simon directly in an interactive Claude Code session, not by a dispatched subagent, since no tool in this harness can run `/plugin` slash commands or install a Claude Code plugin. Those steps are marked **[HUMAN]** and the plan stops at each one for Simon's results before continuing.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to work through this plan. Steps use checkbox (`- [x]`) syntax for tracking. Unlike a typical implementation plan, several steps in this plan are executed by Simon directly in an interactive Claude Code session, not by a dispatched subagent, since no tool in this harness can run `/plugin` slash commands or install a Claude Code plugin. Those steps are marked **[HUMAN]** and the plan stops at each one for Simon's results before continuing.
 
 **Goal:** Take hr-os from "merged and reviewed" to "proven live and tagged v1.0.0". Install it for real, run it against two scenarios the build-time walkthroughs never exercised, fix whatever that surfaces, then tag and (separately, later) submit to the official marketplace.
 
@@ -34,7 +34,7 @@ No new files unless hardening finds a defect. If a defect is found, the fix land
 **Interfaces:**
 - Produces: a self-contained scenario document Simon reads directly when running Task 2 and Task 3 below. No other task consumes this file programmatically.
 
-- [ ] **Step 1: Write the two scenario briefs**
+- [x] **Step 1: Write the two scenario briefs**
 
 Create `docs/superpowers/plans/2026-08-18-hr-os-v1-test-scenarios.md`:
 
@@ -75,7 +75,7 @@ Run `hr-os-workforce-planning` again (a fresh case), any reasonable scenario is 
 For each scenario, report: what stage you reached, what the skill actually did at each checkpoint above, and specifically call out anything that stalled, contradicted the skill's own stated behaviour, or proceeded when it shouldn't have. Plain description is enough, no specific format required.
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docs/superpowers/plans/2026-08-18-hr-os-v1-test-scenarios.md
@@ -88,13 +88,13 @@ git commit -m "docs: add hr-os v1.0.0 live test scenario briefs"
 
 **Not dispatchable.** Requires Simon's interactive Claude Code session.
 
-- [ ] In a real Claude Code session, in this repo, run:
+- [x] In a real Claude Code session, in this repo, run:
   ```
   /plugin marketplace add ./.claude-plugin/marketplace.json
   /plugin install hr-os
   ```
-- [ ] Confirm all five skills (`hr-os-problem-framing`, `hr-os-success-criteria-first`, `hr-os-calibration-and-consultation`, `hr-os-outcome-verification`, `hr-os-workforce-planning`) appear in that session's available-skills listing.
-- [ ] Report back: did installation succeed cleanly, and did all five skills appear? Any errors or unexpected behaviour during install itself (not workflow behaviour, that belongs to Task 3) belongs here.
+- [x] Confirm all five skills (`hr-os-problem-framing`, `hr-os-success-criteria-first`, `hr-os-calibration-and-consultation`, `hr-os-outcome-verification`, `hr-os-workforce-planning`) appear in that session's available-skills listing.
+- [x] Report back: did installation succeed cleanly, and did all five skills appear? Any errors or unexpected behaviour during install itself (not workflow behaviour, that belongs to Task 3) belongs here.
 
 **STOP.** Do not proceed to Task 3 until Simon confirms installation succeeded and reports the skill listing.
 
@@ -104,8 +104,8 @@ git commit -m "docs: add hr-os v1.0.0 live test scenario briefs"
 
 **Not dispatchable.** Requires Simon's interactive Claude Code session, using the scenario briefs from Task 1.
 
-- [ ] Run Scenario A from `docs/superpowers/plans/2026-08-18-hr-os-v1-test-scenarios.md` and report results against its six checkpoints.
-- [ ] Run Scenario B from the same file and report results against its three checkpoints.
+- [x] Run Scenario A from `docs/superpowers/plans/2026-08-18-hr-os-v1-test-scenarios.md` and report results against its six checkpoints.
+- [x] Run Scenario B from the same file and report results against its three checkpoints.
 
 **STOP.** Do not proceed to Task 4 until Simon's results for both scenarios are in.
 
@@ -117,18 +117,18 @@ git commit -m "docs: add hr-os v1.0.0 live test scenario briefs"
 
 **Interfaces:** N/A. This task's shape depends on Task 3's findings, not on anything defined in advance.
 
-- [ ] **Step 1: Read Task 3's results and classify each finding**
+- [x] **Step 1: Read Task 3's results and classify each finding**
 
 For each thing Simon reported as wrong or missing:
 - **Real defect** (the skill did something incorrect, contradictory, or silently wrong): must be fixed before Gate A.
 - **Confirmed-sound** (the skill handled it correctly, e.g. it naturally stopped and asked what to do next on the Scenario B decline): record as confirmed, no change needed. Do not add guidance for a case testing already shows is handled, this was explicit in the spec.
 - **Nice-to-have** (works correctly but could be clearer): log to the GitHub Project board as a new backlog issue (`gh issue create`), not a blocker for this release.
 
-- [ ] **Step 2: Fix each real defect**
+- [x] **Step 2: Fix each real defect**
 
 Follow the same discipline as every prior skill edit in this project: exact insertion points, no restating what other skills own, `<HARD-GATE>` / red-flags-table / Output-section conventions preserved, no source-organisation references. If Scenario B genuinely shows no "gate fails" guidance exists and that's a real gap (not just an omission Simon can live with), add it to the relevant gate skill(s), following the same pattern Amendment 2 used during the original build: a targeted sentence at the right point in the existing structure, not a rewrite.
 
-- [ ] **Step 3: Commit each fix**
+- [x] **Step 3: Commit each fix**
 
 One commit per skill file touched, e.g.:
 ```bash
@@ -136,7 +136,7 @@ git add skills/hr-os-calibration-and-consultation/SKILL.md
 git commit -m "fix: <specific finding from v1.0.0 live testing>"
 ```
 
-- [ ] **Step 4: Report back to Simon**
+- [x] **Step 4: Report back to Simon**
 
 Summarise: what was found, what was fixed (with commit references), what was confirmed-sound and needed no change, and what got logged as a future backlog item instead of fixed now.
 
@@ -153,7 +153,7 @@ Added after live testing revealed Claude Code CLI and Claude Desktop use separat
 
 **Interfaces:** N/A, this is a CI workflow, not code other tasks depend on.
 
-- [ ] **Step 1: Add a release-packaging GitHub Actions workflow**
+- [x] **Step 1: Add a release-packaging GitHub Actions workflow**
 
 Create `.github/workflows/release.yml`:
 
@@ -185,7 +185,7 @@ Uses only the official `actions/checkout` action plus the `gh` CLI (preinstalled
 
 **Path filter is load-bearing, not cosmetic.** An unfiltered `git archive` (the whole repo, ~5.3MB compressed, `resources/` alone is 11MB uncompressed) was tested first and failed silently in Claude Desktop's installer (no error message, just a stall and failure after "thinking for a while"). A lean archive containing only `.claude-plugin/`, `skills/`, `README.md`, and `LICENSE` (~14KB) installed successfully. `resources/`, `docs/`, `CLAUDE.md`, and `PROJECT_STANDARDS.md` are dev/repo-facing content, not needed by the installed plugin at runtime (`hr-os-workforce-planning`'s one reference into `resources/business_partnering/workforce_planning/` already degrades gracefully per Amendment 1 when that path is absent), so the lean package is the correct shape to ship, not just a workaround for the failure.
 
-- [ ] **Step 2: Commit and push**
+- [x] **Step 2: Commit and push**
 
 ```bash
 git add .github/workflows/release.yml
@@ -206,7 +206,7 @@ Expected: the listing includes `.claude-plugin/plugin.json`, `.claude-plugin/mar
 
 **Done.** First attempt used an unfiltered archive (whole repo) and failed silently in Desktop's installer. Rebuilt with the path filter above (lean, ~14KB), installed successfully.
 
-- [ ] **Step 4: [HUMAN] Install and verify in Claude Desktop**
+- [x] **Step 4: [HUMAN] Install and verify in Claude Desktop**
 
 Not dispatchable, requires Simon's Claude Desktop app. In Desktop's plugin-install UI, browse to (or drag in) the test zip from Step 3. Confirm:
 - Installation succeeds without error.
@@ -262,3 +262,20 @@ Confirm the tag is live on GitHub (`gh release view v1.0.0` or the tags page), t
 ## Explicitly not covered by this plan
 
 Gate B (official `claude-plugins-official` submission), a separate future decision per the spec, not scoped here. Any new domain workflow, tracked on the GitHub Project board (`https://github.com/users/simonives/projects/8`), not this plan. Populating `resources/business_partnering/workforce_planning/` reference content, also a tracked backlog item, not required for v1.0.0.
+
+## Addendum: repo hardening beyond the original Task 4 scope
+
+Live testing (Task 3) and Desktop packaging (Task 5) surfaced findings handled as they came up rather than in one batch, consistent with the spec's intent but worth recording explicitly since the checkboxes above don't show the full picture:
+
+- **Source-leak finding (test 12):** a direct question about the design's real-world inspiration caused the model to volunteer the source organisation, synthesised from the installer's own session context, not from hr-os's shipped content (verified clean via grep). Fixed with a shared red-flag row across all five skills, confirmed jailbreak-resistant against a follow-up authority-claim attempt, then reframed from a bare refusal to a confident positive answer per direct feedback that the original wording read as evasive.
+- **Desktop packaging failure:** an unfiltered `git archive` (whole repo, resources/ alone 11MB) failed silently in Desktop's installer. Fixed with a lean archive path filter (`.claude-plugin`, `skills/`, `README.md`, `LICENSE`), both in the manual test artifact and the release CI workflow.
+- **Public-repo readiness pass**, triggered by "everything needs to stand up to scrutiny" ahead of going public:
+  - Rewrote git history to remove `resources/` and its predecessor `src/resources/` entirely (roughly 500 files, including raw copyrighted `.epub` files, that had no business being in a public repo's history, not just its current tree). Full backup bundle retained off-repo.
+  - Deleted the abandoned `hr-os-mvp` and merged `hr-os-plugin` branches.
+  - Renamed the GitHub repo from `workforce_transformation` to `hr-os`, fixing a broken `homepage`/`repository` URL in `plugin.json` that had assumed this rename in advance.
+  - Gitignored `CLAUDE.md` (personal dev notes) and moved the standing "no source-organisation references" rule and the resources/ copyright-history note into `PROJECT_STANDARDS.md`, the now-canonical public contributor doc, so neither is lost to public readers.
+  - Genericised `PROJECT_STANDARDS.md`'s ingestion protocol (was written around one person's EPUB workflow specifically).
+  - Removed non-functional Superpowers references from all five skill files (explanatory analogies only, nothing runtime-functional).
+  - Audited and fixed `README.md` against the writing-standards guide (em dashes, passive voice), added an Example Prompts section and `docs/example-prompts.md`.
+
+None of this contradicts the plan's Global Constraints. It's additional hardening the constraints already implied ("the repo is fit for public scrutiny" is part of what Gate A confirms) but that the original task breakdown didn't anticipate in detail.
