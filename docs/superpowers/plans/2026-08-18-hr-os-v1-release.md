@@ -144,7 +144,76 @@ Summarise: what was found, what was fixed (with commit references), what was con
 
 ---
 
-### Task 5: Gate A, version bump and tag v1.0.0
+### Task 5: Packaged release artifact and Desktop verification
+
+Added after live testing revealed Claude Code CLI and Claude Desktop use separate config stores and separate install mechanisms. Desktop's local installer only accepts `.zip` or `.plugin` files, not a directory or loose manifest, so a git checkout alone doesn't work there. This closes that gap before Gate A, since Desktop/Cowork support was the actual motivation for the plugin pivot, not an afterthought.
+
+**Files:**
+- Create: `.github/workflows/release.yml`
+
+**Interfaces:** N/A, this is a CI workflow, not code other tasks depend on.
+
+- [ ] **Step 1: Add a release-packaging GitHub Actions workflow**
+
+Create `.github/workflows/release.yml`:
+
+```yaml
+name: Package plugin release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build plugin zip
+        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD
+      - name: Create GitHub Release with artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "hr-os-${GITHUB_REF_NAME}.zip" --title "hr-os $GITHUB_REF_NAME" --generate-notes
+```
+
+Uses only the official `actions/checkout` action plus the `gh` CLI (preinstalled on GitHub-hosted runners) and the workflow's own `GITHUB_TOKEN`, no third-party actions. Fires automatically on any `v*` tag push, including the real `v1.0.0` tag in Task 6, so this workflow both produces the test artifact now and the real release artifact later from the same, already-tested path.
+
+- [ ] **Step 2: Commit and push**
+
+```bash
+git add .github/workflows/release.yml
+git commit -m "ci: package plugin as a zip release artifact on version tag push"
+git push origin main
+```
+
+- [ ] **Step 3: Produce a test artifact without waiting for the v1.0.0 tag**
+
+Before Gate A, verify the packaging actually works and produces something Desktop can install, without cutting the real release tag early:
+
+```bash
+git archive --format=zip -o /tmp/hr-os-desktop-test.zip HEAD
+unzip -l /tmp/hr-os-desktop-test.zip | grep -E "^\s|skills/|\.claude-plugin/"
+```
+
+Expected: the listing includes `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and all five `skills/*/SKILL.md` files.
+
+- [ ] **Step 4: [HUMAN] Install and verify in Claude Desktop**
+
+Not dispatchable, requires Simon's Claude Desktop app. In Desktop's plugin-install UI, browse to (or drag in) the test zip from Step 3. Confirm:
+- Installation succeeds without error.
+- All five skills appear in Desktop's available-skills listing.
+- At least one scenario from `docs/superpowers/plans/2026-08-18-hr-os-v1-test-scenarios.md` runs correctly in Desktop (doesn't need to repeat the full CLI test suite, CLI already passed all of it, this is checking the surface works, not re-testing the skill logic).
+
+**STOP.** Do not proceed to Task 6 until Simon confirms Desktop installation and at least one scenario pass.
+
+---
+
+### Task 6: Gate A, version bump and tag v1.0.0
 
 **Only proceed once Simon has explicitly confirmed Gate A** (per the spec: "you confirm the repo is release-ready", a separate, explicit statement, not inferred from silence or from Task 4's report alone).
 
@@ -178,9 +247,11 @@ git push origin main
 git push origin v1.0.0
 ```
 
+Pushing the tag fires the Task 5 release workflow automatically, producing `hr-os-v1.0.0.zip` as a GitHub Release asset from the same packaging path already verified in Task 5.
+
 - [ ] **Step 5: Report back**
 
-Confirm the tag is live on GitHub (`gh release view v1.0.0` or the tags page), and that the plugin is installable via the self-hosted marketplace for anyone pointed at the repo URL. Note explicitly that Gate B (official marketplace submission) is a separate, later decision, not triggered by this task.
+Confirm the tag is live on GitHub (`gh release view v1.0.0` or the tags page), that the release workflow ran and attached `hr-os-v1.0.0.zip`, and that the plugin is installable via the self-hosted marketplace (Claude Code) and the packaged zip (Claude Desktop) for anyone pointed at the repo URL. Note explicitly that Gate B (official marketplace submission) is a separate, later decision, not triggered by this task.
 
 ---
 
