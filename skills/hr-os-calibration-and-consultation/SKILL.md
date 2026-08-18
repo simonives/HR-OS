@@ -1,6 +1,6 @@
 ---
 name: hr-os-calibration-and-consultation
-description: Use before a decision lands — a rating, a promotion, an organisational change, a policy, a budget approval — to get it reviewed by the right second party at a depth matched to the problem's complexity. Part of the hr-os plugin.
+description: You MUST use this before a decision lands — a rating, a promotion, an organisational change, a policy, a budget approval — to get it reviewed by the right second party at a depth matched to the problem's complexity. Part of the hr-os plugin.
 ---
 
 # Calibration and Consultation
@@ -29,6 +29,7 @@ Read the complexity rating from `hr-os-problem-framing`. Scale review depth to i
 1. **Reviewer(s)** — who actually reviewed, by name or role.
 2. **Recommendation** — what they concluded, in their own terms, not paraphrased into agreement with the original proposal.
 3. **Consultation notes** — what was raised, by whom, and how it was addressed. "No consultation required" is a valid note only when the complexity table above says so.
+4. **Conditions** — any follow-ups the sign-off is contingent on, or explicitly "none". This is what `hr-os-workforce-planning` and any other composing skill checks before treating a conditional approval as final.
 
 ## Red flags
 
@@ -40,4 +41,4 @@ Read the complexity rating from `hr-os-problem-framing`. Scale review depth to i
 
 ## Output
 
-Reviewer, recommendation, and consultation notes, matched to the required depth. Hand forward to `hr-os-outcome-verification`.
+Reviewer, recommendation, consultation notes, and conditions, matched to the required depth. Hand forward to `hr-os-outcome-verification`.
