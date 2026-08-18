@@ -1,0 +1,21 @@
+name: Package plugin release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build plugin zip
+        run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD
+      - name: Create GitHub Release with artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "hr-os-${GITHUB_REF_NAME}.zip" --title "hr-os $GITHUB_REF_NAME" --generate-notes
