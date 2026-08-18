@@ -7,7 +7,7 @@ description: You MUST use this before a decision lands — a rating, a promotion
 
 ## Overview
 
-A decision gets reviewed by someone other than the person who made it, before it takes effect. This is the HR analogue of code review — the same principle Superpowers applies before a merge, applied here before a decision affecting people lands.
+A decision gets reviewed by someone other than the person who made it, before it takes effect. This is the HR analogue of code review — the same principle applied before a decision affecting people lands, not just before a merge.
 
 <HARD-GATE>
 Do NOT implement, communicate, or act on the decision until it has been reviewed at the depth this skill specifies. A review that exists only as a checkbox — no named reviewer, no rationale, no evidence anyone actually looked at it — does not satisfy this gate.

@@ -7,7 +7,7 @@ description: You MUST use this before any HR intervention — a policy change, a
 
 ## Overview
 
-Don't design an intervention before the problem is stated. This is the HR analogue of `superpowers:brainstorming` — the same discipline, applied to HR decisions instead of software features.
+Don't design an intervention before the problem is stated.
 
 <HARD-GATE>
 Do NOT propose a solution, a design, or a plan of action until the problem statement, stakeholders, constraints, and complexity rating below are captured and, where the stakes warrant it, confirmed with your human partner. This applies even when the "solution" seems obvious — obvious solutions to badly-framed problems are how HR interventions go wrong.

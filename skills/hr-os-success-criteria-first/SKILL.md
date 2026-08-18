@@ -7,7 +7,7 @@ description: You MUST use this before designing any HR intervention — a policy
 
 ## Overview
 
-Define what "working" looks like before designing how to get there. This is the HR analogue of `superpowers:test-driven-development` — write the test (the success criteria) before writing the implementation (the policy, the role, the plan).
+Define what "working" looks like before designing how to get there — the same discipline test-driven development applies to code: write the test (the success criteria) before writing the implementation (the policy, the role, the plan).
 
 <HARD-GATE>
 Do NOT begin designing the intervention until success criteria are stated AND traced to an organisational purpose or target. Success criteria with no stated purpose are a gate failure, not something to fix later — they mean you can't tell afterwards whether the intervention actually worked, or whether it worked at the expense of the point of doing it.

@@ -7,7 +7,7 @@ description: Use when advising on or working through a hiring, backfill, or head
 
 ## Overview
 
-Workforce planning done well answers "should we hire, and for what" before it answers "who should we hire." This skill composes hr-os's four gate skills into the specific sequence a workforce-planning decision needs — the same way `superpowers:subagent-driven-development` composes brainstorming, writing-plans, and code review into a single build process.
+Workforce planning done well answers "should we hire, and for what" before it answers "who should we hire." This skill composes hr-os's four gate skills into the specific sequence a workforce-planning decision needs.
 
 Reference material for this domain lives in `resources/business_partnering/workforce_planning/` — read what's relevant there at each stage below rather than relying on general knowledge of workforce planning.
 
@@ -42,7 +42,7 @@ This gate requires your human partner's explicit approval before role design beg
 
 ### 3. Role design and levelling
 
-Design the role profile implied by the approved plan: title, level, and core capabilities. Ground this in `resources/business_partnering/workforce_planning/` and any relevant levelling framework it references. Check whether that path actually contains populated reference material — by default it won't (this repo doesn't ship a populated corpus; it's a local, optional addition, see `CLAUDE.md`). If it's sparse or absent, say so explicitly and rely on general HR expertise for the role design, flagging that domain-specific reference grounding wasn't available for this case — the same honesty pattern stage 1 uses for unevidenced demand signals, applied here to unavailable reference material. No separate gate skill here — this is domain design work sitting between two gates, not itself a cross-cutting gate type.
+Design the role profile implied by the approved plan: title, level, and core capabilities. Ground this in `resources/business_partnering/workforce_planning/` and any relevant levelling framework it references. Check whether that path actually contains populated reference material — by default it won't (this repo doesn't ship a populated corpus; it's a local, optional addition, see `PROJECT_STANDARDS.md`). If it's sparse or absent, say so explicitly and rely on general HR expertise for the role design, flagging that domain-specific reference grounding wasn't available for this case — the same honesty pattern stage 1 uses for unevidenced demand signals, applied here to unavailable reference material. No separate gate skill here — this is domain design work sitting between two gates, not itself a cross-cutting gate type.
 
 ### 4. Budget/approval gate
 

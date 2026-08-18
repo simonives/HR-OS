@@ -7,7 +7,7 @@ description: You MUST use this before declaring an HR case or initiative complet
 
 ## Overview
 
-Check that what actually happened matches what was decided, before closing the case — and ask whether anything about this case should change how future cases are handled. This is the HR analogue of `superpowers:verification-before-completion`: evidence before the claim of success, every time.
+Check that what actually happened matches what was decided, before closing the case — and ask whether anything about this case should change how future cases are handled. Evidence before the claim of success, every time.
 
 <HARD-GATE>
 Do NOT declare the case or initiative complete without both (a) evidence the outcome matches the decision from `hr-os-success-criteria-first`, and (b) an explicit feed-forward statement — even "no changes needed" counts, but silence does not.

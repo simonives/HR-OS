@@ -3,10 +3,15 @@
 .worktrees/
 .superpowers/
 
+# Local dev notes, personal-environment tooling references. Not
+# part of the repo, not shipped. See PROJECT_STANDARDS.md for the
+# public contributor equivalent.
+CLAUDE.md
+
 # Local-only HR reference corpus: copyrighted book extracts used for
-# grounding skill content during development (see CLAUDE.md). Never
-# tracked, this repo is public and none of it is licensed for
-# redistribution. Keep locally if useful, never commit.
+# grounding skill content during development, see PROJECT_STANDARDS.md
+# section 5. Never tracked, this repo is public and none of it is
+# licensed for redistribution. Keep locally if useful, never commit.
 resources/
 ingestion_chamber/
 **/*.epub
