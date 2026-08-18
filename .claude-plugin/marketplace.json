@@ -8,7 +8,7 @@
     {
       "name": "hr-os",
       "description": "Gated Claude Code skills for enterprise HR practice.",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": "./",
       "author": {
         "name": "Simon Ives"
