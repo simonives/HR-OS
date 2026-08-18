@@ -48,13 +48,19 @@ This release does not auto-progress on its own. Two separate human confirmations
 
 ## Roadmap (post-v1.0.0)
 
-Captured now so v1.0.0 doesn't read as a dead end, not committed to a timeline:
+Captured now so v1.0.0 doesn't read as a dead end, not committed to a timeline. The exhaustive, ongoing-reference version of this roadmap lives in GitHub, not in this document, so this section is a curated top-level summary, kept short deliberately so it doesn't go stale the way a long inline list would:
 
-1. **Managing Underperformance — confirmed next domain workflow.** Per the operating-model alignment analysis: its real-world structure (establish framework → identify underperformance → determine and execute action) maps almost directly onto `problem-framing → structured-investigation → calibration-and-consultation`, and it's the only designed gate skill (`hr-os-structured-investigation`) with no workflow using it yet. Gets its own brainstorming → spec → plan cycle when taken up — not scoped here.
-2. **Governance-as-peer-domain decision** (Gap 1 in the alignment doc) — resolve when a governance-adjacent workflow (e.g. evidence-based policy design) is actually taken up, not before.
-3. **Employee-experience diffused-vs-standalone decision** (Gap 2 in the alignment doc) — same treatment, resolve when load-bearing.
-4. **Cross-provider port (OpenAI, DeepSeek, etc.)** — stays a non-goal until there's an actual reason to port; the skill content is written to be portable in principle (per the original plugin design spec), but no port work is planned.
-5. **Official-marketplace readiness checklist** (informs Gate B, not required for Gate A): consistent versioning across releases; README and both manifest files accurate and current; no placeholder/pending content visibly shipped (the `resources/business_partnering/workforce_planning/` placeholder README is fine for Gate A but worth a look before Gate B — either populate it or make sure its "pending" framing reads as intentional, not neglected); a security review pass per the submission process's stated bar.
+- **GitHub Project:** [hr-os Roadmap](https://github.com/users/simonives/projects/8), every backlog item as a board, one item per distinct capability area (drawn from the operating-model alignment analysis), labelled by hr-os domain (`domain:*`) and status (`status:shipped` / `status:next` / `status:backlog`).
+- **GitHub Issues:** [simonives/workforce_transformation issues](https://github.com/simonives/workforce_transformation/issues), one issue per roadmap item, 34 created at v1.0.0 planning time (one already closed as shipped: strategic workforce planning, delivered as `hr-os-workforce-planning`).
+
+Top priorities, for orientation (see the board for the full, current list):
+
+1. **Managing Underperformance, confirmed next domain workflow** (`status:next`, issue: "Performance & conduct: structured investigation"). Per the operating-model alignment analysis, its real-world structure (establish framework, identify underperformance, determine and execute action) maps almost directly onto `problem-framing` then `structured-investigation` then `calibration-and-consultation`, and it's the only designed gate skill (`hr-os-structured-investigation`) with no workflow using it yet. Gets its own brainstorming, spec, and plan cycle when taken up, not scoped here.
+2. **Governance-as-peer-domain decision** (Gap 1 in the alignment doc; issue: "Policy design & evidence-based governance"), resolve when a governance-adjacent workflow is actually taken up, not before.
+3. **Employee-experience diffused-vs-standalone decision** (Gap 2 in the alignment doc; issue: "Culture & engagement programme design"), same treatment, resolve when load-bearing.
+4. **Populate `resources/business_partnering/workforce_planning/` reference content**, closes the content gap flagged during the v1.0.0 build, using the Calibre-library and research-MCP grounding pipeline now documented in `CLAUDE.md`.
+5. **Cross-provider port (OpenAI, DeepSeek, etc.)** stays a non-goal until there's an actual reason to port; the skill content is written to be portable in principle (per the original plugin design spec), but no port work is planned. Not tracked as a board item since it isn't a domain-workflow candidate.
+6. **Official-marketplace readiness checklist** (informs Gate B, not required for Gate A): consistent versioning across releases; README and both manifest files accurate and current; no placeholder/pending content visibly shipped without intentional framing; a security review pass per the submission process's stated bar.
 
 ## Explicitly not done here
 
