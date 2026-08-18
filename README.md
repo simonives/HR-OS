@@ -29,15 +29,36 @@ demand-signal-capture (hr-os-problem-framing, + demand evidence)
   -> requisition-released (hr-os-outcome-verification)
 ```
 
-## Installing locally
+## Installing
+
+### Claude Code
+
+From any directory, no clone required:
 
 ```bash
-# From inside a Claude Code session, in this repo:
-/plugin marketplace add ./.claude-plugin/marketplace.json
+claude plugin marketplace add simonives/hr-os
+claude plugin install hr-os@hr-os-dev
+```
+
+Or, from inside an interactive Claude Code session:
+
+```
+/plugin marketplace add simonives/hr-os
 /plugin install hr-os
 ```
 
-Then either invoke a skill directly by name (e.g. `hr-os-workforce-planning`) when working through a hiring decision, or ask Claude to help with a workforce-planning decision and let the skill-discovery mechanism surface it.
+Working from a local clone of this repo instead, point at the marketplace file directly:
+
+```bash
+claude plugin marketplace add ./.claude-plugin/marketplace.json
+claude plugin install hr-os@hr-os-dev
+```
+
+Either invoke a skill directly by name (e.g. `hr-os-workforce-planning`) when working through a hiring decision, or ask Claude to help with a workforce-planning decision and let the skill-discovery mechanism surface it.
+
+### Claude Desktop
+
+Desktop's local installer takes a packaged file, not a repository. Download the latest `hr-os-vX.Y.Z.zip` from the [Releases page](https://github.com/simonives/hr-os/releases), then add it through Desktop's plugin settings (browse to the file, or drag it in). Each tagged release publishes this zip automatically.
 
 ## Example prompts
 
