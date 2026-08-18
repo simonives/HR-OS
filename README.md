@@ -1,242 +1,51 @@
-# Workforce Transformation MCP Server
+# hr-os
 
-An enterprise-grade [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server covering the full breadth of Human Resources, People & Culture, and Workforce Management practice. This server surfaces tools, resources, and prompts to support every activity that an HR practitioner, supervisor, or employee could require — from operational tasks such as résumé screening through to strategic activities such as building a technology transformation roadmap.
+A Claude Code / Cowork plugin that brings gate discipline to enterprise HR practice — modelled philosophically on [Superpowers](https://github.com/obra/superpowers), the same rigour Superpowers applies to a software dev/CI-CD lifecycle, applied instead to how a mature HR function actually operates: workforce planning before hiring, structured investigation before disciplinary action, evidence-based policy design, proper consultation before organisational change.
 
-> **Status:** Functional and under active development. Capabilities expand continuously as new tools, resources, and prompts are registered.
+> **Status:** MVP — one composed workflow (workforce planning before hiring), built from four gate skills. See `docs/superpowers/specs/2026-08-17-hr-os-plugin-design.md` for the design and `docs/superpowers/plans/2026-08-17-hr-os-plugin-mvp.md` for how it was built.
 
----
+## What this is
 
-## Table of Contents
+A set of Claude Code skills (`skills/*/SKILL.md`), installed the same way Superpowers is. No application code, no server, no database — gate discipline is enforced by Claude Code's own skill-discovery mechanism and each skill's explicit hard-gates, not by a state machine.
 
-- [Purpose](#purpose)
-- [Core Philosophy](#core-philosophy)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Capability Roadmap](#capability-roadmap)
-- [Repository Structure](#repository-structure)
-- [Regulatory & Compliance Framework](#regulatory--compliance-framework)
-- [Localisation](#localisation)
-- [Contributing](#contributing)
-- [Licence](#licence)
+## The four gate skills
 
----
+| Skill | What it gates |
+| :--- | :--- |
+| `hr-os-problem-framing` | An intervention starts from an explicit problem statement and a complexity rating, not a jump to a solution. |
+| `hr-os-success-criteria-first` | A design's success criteria are agreed, and traced to an organisational purpose, before the design work. |
+| `hr-os-calibration-and-consultation` | A decision is reviewed by the right second party, at a depth matched to its complexity, before it lands. |
+| `hr-os-outcome-verification` | A case only closes once the outcome is shown to match what was decided, with an explicit feed-forward statement. |
 
-## Purpose
+## MVP: workforce planning before hiring
 
-The Workforce Transformation MCP server provides a single, authoritative integration point for AI-assisted Human Resources practice. It is designed to grow incrementally, beginning with foundational HR capabilities and expanding to cover every domain within a modern enterprise People function:
+`hr-os-workforce-planning` composes the four gates above:
 
-- **Operational HR** — recruitment, onboarding, offboarding, contract management, leave administration
-- **Employee Relations** — case management, grievance handling, performance improvement
-- **Learning & Development** — skills gap analysis, learning pathway design, capability frameworks
-- **Workforce Planning** — demand forecasting, organisational design, spans-and-layers analysis
-- **Reward & Recognition** — remuneration benchmarking, incentive design, total reward statements
-- **HR Technology** — system selection, implementation roadmapping, integration architecture
-- **People Analytics** — attrition modelling, engagement analysis, diversity reporting
-- **Strategic HR** — business partnership, transformation programme design, change management
+```
+demand-signal-capture (hr-os-problem-framing, + demand evidence)
+  -> workforce-plan-gate (hr-os-success-criteria-first)          <- human approval
+  -> role-design-and-levelling
+  -> budget-approval-gate (hr-os-calibration-and-consultation)   <- human approval
+  -> requisition-released (hr-os-outcome-verification)
+```
 
----
-
-## Core Philosophy
-
-All capabilities within this server operate against a **Strategic Value Framework** grounded in three principles:
-
-1. **Human-Centricity** — Every output prioritises the wellbeing, dignity, and agency of people. Recommendations draw on flourishing-workplace theory and Socratic inquiry.
-2. **Evidence-Based Practice** — Tools and prompts reference empirical research, statutory instruments, and established HR methodologies rather than convention or assumption.
-3. **Regulatory Rigour** — Outputs are bounded by applicable AI legislation, employment law, and codes of conduct. The server maintains a structured regulatory knowledge base (see [Regulatory & Compliance Framework](#regulatory--compliance-framework)) to ensure all generated content remains compliant.
-
----
-
-## Architecture
-
-This server implements the MCP specification using the TypeScript SDK. It exposes three primitive types:
-
-| Primitive | Description |
-| :-------- | :---------- |
-| **Tools** | Executable functions that perform discrete HR tasks (e.g. screen a résumé, draft a performance review). |
-| **Resources** | Read-only knowledge assets the host or model can retrieve (e.g. legislative summaries, policy templates, competency frameworks). |
-| **Prompts** | Reusable, parameterised prompt templates for common HR interactions (e.g. conduct investigation interview, workforce planning facilitation). |
-
-The server communicates over **stdio** by default, making it compatible with any MCP host (Claude Desktop, Cursor, custom integrations, etc.).
-
-### Technology Stack
-
-| Component | Technology |
-| :-------- | :--------- |
-| Runtime | Node.js (ESM) |
-| Language | TypeScript |
-| MCP SDK | `@modelcontextprotocol/sdk` |
-| Schema Validation | `zod` |
-| Build | `tsc` |
-| Dev Server | `tsx` |
-
----
-
-## Installation
-
-### Prerequisites
-
-- Node.js ≥ 18
-- npm ≥ 9
-
-### Steps
+## Installing locally
 
 ```bash
-# Clone the repository
-git clone https://github.com/simonives/workforce_transformation.git
-cd workforce_transformation
-
-# Install dependencies
-npm install
-
-# Build the server
-npm run build
+# From inside a Claude Code session, in this repo:
+/plugin marketplace add ./.claude-plugin/marketplace.json
+/plugin install hr-os
 ```
 
----
+Then either invoke a skill directly by name (e.g. `hr-os-workforce-planning`) when working through a hiring decision, or ask Claude to help with a workforce-planning decision and let the skill-discovery mechanism surface it.
 
-## Configuration
+## Resource library
 
-### Claude Desktop
+`resources/` is a curated HR knowledge library organised across six domains (business partnering, centres of excellence, digital HR & transformation, employee experience, HR service delivery, people analytics). `hr-os-workforce-planning` grounds itself in `resources/business_partnering/workforce_planning/` — though that domain does not yet have populated reference material, unlike the other five; the skill is written to work without it, but grounding quality will improve once real content is added.
 
-Add the following block to your `claude_desktop_config.json`:
+## Extending beyond the MVP
 
-```json
-{
-  "mcpServers": {
-    "workforce-transformation": {
-      "command": "node",
-      "args": ["/absolute/path/to/workforce_transformation/dist/index.js"]
-    }
-  }
-}
-```
-
-### Development Mode
-
-Run the server directly without a build step using `tsx`:
-
-```bash
-npm run dev
-```
-
----
-
-## Capability Roadmap
-
-The table below reflects the intended target state. Items marked **Planned** are not yet implemented; items marked **Active** are available in the current build.
-
-### Tools
-
-| Tool | Domain | Status |
-| :--- | :----- | :----- |
-| `screen-resume` | Recruitment | Planned |
-| `draft-job-description` | Recruitment | Planned |
-| `plan-workforce-immediate` | Workforce Planning (0–2 weeks) | Planned |
-| `plan-workforce-short` | Workforce Planning (2–6 weeks) | Planned |
-| `plan-workforce-medium` | Workforce Planning (6 months) | Planned |
-| `plan-workforce-long` | Workforce Planning (12+ months) | Planned |
-| `performance-review-optimiser` | Performance Management | Planned |
-| `er-compliance-scanner` | Employee Relations | Planned |
-| `org-modelling-audit` | Organisational Design | Planned |
-| `skills-gap-analysis` | Learning & Development | Planned |
-| `remuneration-benchmark` | Reward & Recognition | Planned |
-| `transformation-roadmap` | HR Technology | Planned |
-
-### Resources
-
-| Resource URI | Content | Status |
-| :----------- | :------ | :----- |
-| `workforce://regulatory/ai-legislation` | Global AI legislation summaries | Planned |
-| `workforce://regulatory/ai-codes-of-conduct` | AI codes of conduct (by jurisdiction) | Planned |
-| `workforce://legal/employment-law` | Employment law summaries (by jurisdiction) | Planned |
-| `workforce://strategy/org-design` | Organisational design principles | Planned |
-| `workforce://lifecycle/employee` | End-to-end employee lifecycle standards | Planned |
-| `workforce://frameworks/competency` | Competency framework library | Planned |
-
-### Prompts
-
-| Prompt | Use Case | Status |
-| :----- | :------- | :----- |
-| `conduct-investigation-interview` | Employee Relations | Planned |
-| `facilitate-workforce-planning` | Workforce Planning | Planned |
-| `coach-performance-conversation` | Performance Management | Planned |
-| `design-change-communication` | Change Management | Planned |
-
----
-
-## Repository Structure
-
-```
-workforce_transformation/
-│
-├── src/                          # All server source code
-│   ├── index.ts                  # MCP server entry point; registers all primitives
-│   │
-│   ├── tools/                    # Tool definitions (executable HR functions)
-│   │   └── (tools registered here as capabilities are built)
-│   │
-│   ├── resources/                # Resource definitions (read-only knowledge assets)
-│   │   └── (resources registered here as knowledge is onboarded)
-│   │
-│   ├── prompts/                  # Prompt template definitions
-│   │   └── (prompts registered here as templates are developed)
-│   │
-│   └── lib/                      # Shared utilities, validators, and helpers
-│       └── (shared logic registered here)
-│
-├── dist/                         # Compiled JavaScript output (generated by tsc; not committed)
-│
-├── node_modules/                 # npm dependencies (not committed)
-│
-├── package.json                  # Project metadata and npm scripts
-├── package-lock.json             # Locked dependency tree
-├── tsconfig.json                 # TypeScript compiler configuration
-├── .gitignore                    # Files and directories excluded from version control
-├── LICENSE                       # Project licence
-└── README.md                     # This file
-```
-
-> **Note:** A `regulatory/` directory will be added at the repository root to house raw legislative and policy source documents (e.g. AI Acts, employment statutes, codes of conduct). These static assets inform the resource layer and ensure generated outputs remain compliant.
-
----
-
-## Regulatory & Compliance Framework
-
-This server maintains a structured knowledge base of regulatory instruments to bound all generated content. The initial tranche of content — to be onboarded shortly — covers:
-
-- **AI Legislation** — applicable statutes and regulations governing the development and deployment of AI systems (e.g. EU AI Act, emerging national frameworks).
-- **AI Regulations** — subordinate instruments, guidance notes, and technical standards issued under primary AI legislation.
-- **AI Codes of Conduct** — voluntary and mandatory codes governing responsible AI use in workplace and enterprise contexts.
-
-These instruments are referenced by resources exposed under the `workforce://regulatory/` URI namespace and are cited in tool and prompt outputs where compliance obligations apply.
-
-> As the server expands into specific jurisdictions, localised regulatory content will be included for each supported locale.
-
----
-
-## Localisation
-
-This is a **global repository**. All capabilities are designed to support multi-jurisdictional operation, with locale-specific variations managed through:
-
-- Jurisdiction-scoped resources (e.g. `workforce://legal/employment-law/au`, `workforce://legal/employment-law/gb`)
-- Locale parameters on tools and prompts where outputs differ by jurisdiction
-- A `locales/` directory (to be created) housing jurisdiction-specific overrides and addenda
-
-Current localisation priorities and supported jurisdictions will be documented here as they are onboarded.
-
----
-
-## Contributing
-
-Contributions, issues, and feature requests are welcome. Please open an issue to discuss proposed changes before submitting a pull request. All contributions must:
-
-- Conform to the TypeScript coding standards defined in `tsconfig.json`
-- Reference applicable regulatory instruments where the capability has compliance implications
-- Include tool/resource/prompt descriptions sufficient for an MCP host to surface the capability correctly
-
----
-
-## Licence
-
-This project is licenced under the [ISC Licence](./LICENSE).
+- **New gate-typed skills:** `hr-os-structured-investigation` (structured fact-finding before adverse action on a person) is designed in the spec but not yet built — no workflow needs it until an employee-relations skill is added.
+- **New domain workflows:** compose the existing four gate skills the way `hr-os-workforce-planning` does, following its pattern.
+- **Audit trail / governance logging:** deferred until this plugin has proven out in real use — see the design spec's "Explicitly out of scope" section.
+- **Cross-provider ports:** the skill content is written to be portable in principle; no port to another provider's instruction format exists yet.

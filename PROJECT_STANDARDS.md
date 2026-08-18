@@ -1,6 +1,6 @@
 # Contributor & Project Standards
 
-This document establishes the definitive engineering, architectural, and stylistic guidelines for the `workforce_transformation` MCP repository. All collaborators (human and AI) must adhere to these structural guardrails to ensure functional integrity and a consistent operational rhythm.
+This document establishes the definitive engineering, architectural, and stylistic guidelines for the `hr-os` Claude Code plugin repository. All collaborators (human and AI) must adhere to these structural guardrails to ensure functional integrity and a consistent operational rhythm.
 
 ---
 
@@ -17,7 +17,7 @@ All documentation, output generation, and structural naming conventions must str
 
 ## 2. Directory Taxonomy (The Ulrich Model)
 
-The `/src/resources/` directory maintains a strict, functional HR taxonomy based on an enterprise-scale Dave Ulrich operating model. Do **not** place reference materials in arbitrary locations. They must fundamentally map into one of the following 6 pillars:
+The `/resources/` directory maintains a strict, functional HR taxonomy based on an enterprise-scale Dave Ulrich operating model. Do **not** place reference materials in arbitrary locations. They must fundamentally map into one of the following 6 pillars:
 
 1.  **`business_partnering/`**: For workforce planning, ORG design, and HRBP strategy.
 2.  **`centres_of_excellence/`**: For deep "hire-to-retire" specialisations (Talent Acquisition, L&D, Total Rewards, Employee Relations, DEI).
@@ -78,6 +78,6 @@ When a new EPUB reference is added to the system, it must be programmatically ex
     ```
 3.  **Consume & Distil:** Read the generated child chapters. Infer the thesis and frameworks strictly *after* scanning the output to maintain the author's intent.
 4.  **Deploy:**
-    *   Draft the Parent Document into the appropriate `/src/resources/[pillar]/[domain]` directory.
+    *   Draft the Parent Document into the appropriate `/resources/[pillar]/[domain]` directory.
     *   Move the child markdown files into a sibling `/references/[title]/` folder.
 5.  **Purge:** Permanently delete the original EPUB from the `/ingestion_chamber/` once ingestion is successfully verified.
