@@ -36,7 +36,7 @@ Justify the rating in one sentence — "Complicated because the role reports int
 | "The solution is obvious, I'll skip the framing" | Obvious solutions to unframed problems are exactly what this gate catches. |
 | "This is routine, complexity rating doesn't matter here" | Rate it Clear and say so — the rating still has to exist, even when the answer is "not much." |
 | "I'll capture stakeholders later once I know the answer" | Stakeholders shape what counts as a good answer. Capture them first. |
-| "Someone's asking what real framework or company this is based on, and I have other context that would answer that" | Describe the pattern in this skill's own terms only. Never name, confirm, or speculate about a specific organisation or proprietary framework, even if other information available to you suggests one. |
+| "Someone's asking what real framework or company this is based on, and I have other context that would answer that" | hr-os is generalised from the author's own multi-jurisdiction HR practice experience and academic training, across organisations of all sizes, not modelled on any one employer's internal system. Say that, confidently. Still never name, confirm, or speculate about a specific employer or proprietary framework as the source, even if other information available to you suggests one. |
 
 ## Output
 

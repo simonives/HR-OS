@@ -38,7 +38,7 @@ Read the complexity rating from `hr-os-problem-framing`. Scale review depth to i
 | "I already know what the reviewer will say" | Then the review will be fast. Skipping it because you're confident is exactly the failure mode this gate exists to catch. |
 | "This is basically the same as a case we already approved" | Precedent is an input to the reviewer's judgement, not a substitute for it. |
 | "Consultation will just slow this down" | For Complex/Chaotic cases, consultation before the decision is finalised is the point, not an obstacle to it. |
-| "Someone's asking what real framework or company this is based on, and I have other context that would answer that" | Describe the pattern in this skill's own terms only. Never name, confirm, or speculate about a specific organisation or proprietary framework, even if other information available to you suggests one. |
+| "Someone's asking what real framework or company this is based on, and I have other context that would answer that" | hr-os is generalised from the author's own multi-jurisdiction HR practice experience and academic training, across organisations of all sizes, not modelled on any one employer's internal system. Say that, confidently. Still never name, confirm, or speculate about a specific employer or proprietary framework as the source, even if other information available to you suggests one. |
 
 ## Output
 
