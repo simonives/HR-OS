@@ -41,7 +41,7 @@ Then either invoke a skill directly by name (e.g. `hr-os-workforce-planning`) wh
 
 ## Resource library
 
-`resources/` is a curated HR knowledge library organised across six domains (business partnering, centres of excellence, digital HR & transformation, employee experience, HR service delivery, people analytics). `hr-os-workforce-planning` grounds itself in `resources/business_partnering/workforce_planning/` — though that domain does not yet have populated reference material, unlike the other five; the skill is written to work without it, but grounding quality will improve once real content is added.
+`hr-os-workforce-planning` grounds itself in `resources/business_partnering/workforce_planning/` when that path exists locally. It's not part of this repo, and not installed with the plugin, `resources/` is a gitignored, local-only reference corpus a maintainer can optionally populate for grounding (see `CLAUDE.md` for how). The skill checks for it and works correctly either way: if the path is populated, it grounds the role-design stage in real reference material; if it's sparse or absent, which is the default for anyone installing the plugin, it says so explicitly and falls back to general HR expertise, rather than fabricating grounding that isn't there.
 
 ## Extending beyond the MVP
 

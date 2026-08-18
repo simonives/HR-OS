@@ -30,7 +30,7 @@ The `/resources/` directory maintains a strict, functional HR taxonomy based on 
 
 ## 3. The Parent-Child Knowledge Hierarchy
 
-To optimise the AI's Context Window, unstructured reference material (such as full-text EPUBs) **must not** be directly parsed by the MCP dynamically. They must be ingested using a Parent-Child architecture:
+To optimise the AI's Context Window, unstructured reference material (such as full-text EPUBs) **must not** be read verbatim by a skill at runtime. They must be ingested using a Parent-Child architecture:
 
 *   **The Parent Node (`<title>_summary.md`):** A distilled, high-level summary resting at the root of the domain. It features an Executive Thesis, key models, and crucially, a **Context Routing Table** linking specific use-cases directly to the child files.
 *   **The Child Nodes (`references/<title>/chapter_**.md`):** Verbatim, parsed markdown chunks housed discretely in a references sub-folder. The AI only traverses to these files if directed by the Parent Node.
@@ -64,7 +64,7 @@ ingested_date: [Date]
 
 ## 4. Operational Protocol: Executing EPUB Ingestion
 
-When a new EPUB reference is added to the system, it must be programmatically extracted and distilled.
+When a new EPUB reference is added to the system, it must be programmatically extracted and distilled. `/ingestion_chamber/` and `/resources/` are both gitignored, local-only working areas, nothing produced by this workflow is ever committed or shipped with the plugin (see `CLAUDE.md`'s History note for why this matters: this repo's history was once rewritten to remove copyrighted book content that got tracked by mistake).
 
 **Execution Workflow:**
 1.  **Stage:** Place the raw EPUB file within `/ingestion_chamber/` at the repository root.

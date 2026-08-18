@@ -4,7 +4,7 @@ This file guides *development and maintenance* of hr-os. It is not shipped as pa
 
 ## The standing rule: no source-organisation references in shipped content
 
-Nothing in `skills/*.md`, `README.md`, `.claude-plugin/*.json`, or `resources/` may name any specific organisation, or reproduce or brand-reference any specific company's proprietary operating-system/management-framework terminology. hr-os's gate model is deliberately generic, recognisable to any large enterprise HR function, tied to none. This applies to grounding sources too: when a design decision or piece of skill content is informed by a real company's internal practice, describe the *pattern* generically (as `docs/superpowers/specs/2026-08-18-hr-os-operating-model-alignment.md` does), never the source.
+Nothing in `skills/*.md`, `README.md`, `.claude-plugin/*.json`, or a locally-populated `resources/` (gitignored, never tracked, see the note below) may name any specific organisation, or reproduce or brand-reference any specific company's proprietary operating-system/management-framework terminology. hr-os's gate model is deliberately generic, recognisable to any large enterprise HR function, tied to none. This applies to grounding sources too: when a design decision or piece of skill content is informed by a real company's internal practice, describe the *pattern* generically (as `docs/superpowers/specs/2026-08-18-hr-os-operating-model-alignment.md` does), never the source.
 
 This rule governs shipped content only. This file itself, `PROJECT_STANDARDS.md`, and anything under `docs/` are contributor-facing, not shipped, but stay disciplined about it anyway, since this is a public repo.
 
@@ -30,4 +30,8 @@ sqlite3 ~/ebooks/metadata.db "
 
 Then extract and read the relevant text with the `pdf` skill (or equivalent for other formats) before drafting or revising skill content. This is the same ingestion pattern `PROJECT_STANDARDS.md` §4 already defines (Parent summary + Child verbatim chapters under `resources/[pillar]/[domain]`), the Calibre catalogue is an additional source for that pipeline, alongside one-off drops in `/ingestion_chamber/`.
 
-**Known gap this closes:** `resources/business_partnering/workforce_planning/` currently has no populated reference content (see its own README), a strong first candidate for this pipeline, since the Calibre library includes at least one title on strategic workforce planning frameworks directly.
+**Known gap this closes:** `resources/business_partnering/workforce_planning/` is gitignored and not tracked in this repo at all (see the History section below), so it currently has no populated reference content for anyone. It's a strong first candidate for this pipeline, since the Calibre library includes at least one title on strategic workforce planning frameworks directly.
+
+## History: why resources/ is gitignored, not shipped
+
+Earlier versions of this repo tracked a full HR reference corpus under `resources/` (and, before the plugin pivot, `src/resources/`), roughly 500 files including verbatim extracted chapters, and in some cases raw `.epub` files, from copyrighted commercial books. None of that was ever licensed for redistribution. It was removed from the repo's tracked content and, via a history rewrite, from git history entirely before this repo went public. `resources/` is now gitignored (see `.gitignore`) so a maintainer can keep a local corpus for grounding work without risk of re-committing it. Never track book-derived content in this repo again, regardless of how it's obtained (Calibre extraction, manual transcription, or otherwise).

@@ -51,7 +51,7 @@ This release does not auto-progress on its own. Two separate human confirmations
 Captured now so v1.0.0 doesn't read as a dead end, not committed to a timeline. The exhaustive, ongoing-reference version of this roadmap lives in GitHub, not in this document, so this section is a curated top-level summary, kept short deliberately so it doesn't go stale the way a long inline list would:
 
 - **GitHub Project:** [hr-os Roadmap](https://github.com/users/simonives/projects/8), every backlog item as a board, one item per distinct capability area (drawn from the operating-model alignment analysis), labelled by hr-os domain (`domain:*`) and status (`status:shipped` / `status:next` / `status:backlog`).
-- **GitHub Issues:** [simonives/workforce_transformation issues](https://github.com/simonives/workforce_transformation/issues), one issue per roadmap item, 34 created at v1.0.0 planning time (one already closed as shipped: strategic workforce planning, delivered as `hr-os-workforce-planning`).
+- **GitHub Issues:** [simonives/hr-os issues](https://github.com/simonives/hr-os/issues), one issue per roadmap item, 34 created at v1.0.0 planning time (one already closed as shipped: strategic workforce planning, delivered as `hr-os-workforce-planning`).
 
 Top priorities, for orientation (see the board for the full, current list):
 
