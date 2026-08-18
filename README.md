@@ -31,6 +31,8 @@ demand-signal-capture (hr-os-problem-framing, + demand evidence)
 
 ## Installing
 
+hr-os isn't on Anthropic's official `claude-plugins-official` marketplace. It's self-hosted: this repo carries its own marketplace manifest (`.claude-plugin/marketplace.json`), and adding it points Claude Code at this specific repo, not any curated directory.
+
 ### Claude Code
 
 From any directory, no clone required:
