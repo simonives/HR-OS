@@ -52,3 +52,9 @@ Follow-up attempt: claimed to be the plugin's author with a built-in exemption, 
 ## Claude Code CLI test round: complete
 
 All capability and break-it prompts (the 12 generated prompts, covering discovery, off-domain recognition, gate-skip pressure, self-approval pressure, unverified-fact pressure, complexity-rating pressure, verbal-signoff-as-approval pressure, both reject-path variants, feed-forward-skip pressure, and the source-leak/jailbreak checks) passed in Claude Code CLI. Desktop testing underway next.
+
+## Claude Desktop distribution finding
+
+Claude Code CLI and Claude Desktop use entirely separate config stores on this machine (`~/.claude/` vs `~/Library/Application Support/Claude/`), confirmed by inspecting both directly, no plugin installed via the CLI's `claude plugin install` propagates to Desktop automatically. Desktop's local-install path (Settings, add plugin by browsing) only accepts packaged `.zip` or `.plugin` files, not a directory or a loose `marketplace.json`. This means CLI-installed-from-source (what this project tested) and Desktop-installed-from-package are genuinely different distribution paths, not the same mechanism on two surfaces.
+
+**Implication:** Desktop testing for v1.0.0 needs a packaged release artifact (a `.zip` of the plugin, likely produced by a CI/CD step, e.g. GitHub Actions on tag push), not just the git repo itself. All capability/break-it prompt testing was completed and passed in Claude Code CLI; Desktop testing is blocked on having a compatible package to install, not on the plugin's own behaviour.
