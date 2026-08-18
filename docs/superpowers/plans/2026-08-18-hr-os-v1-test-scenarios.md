@@ -32,3 +32,11 @@ Run `hr-os-workforce-planning` again (a fresh case), any reasonable scenario is 
 ## Reporting back
 
 For each scenario, report: what stage you reached, what the skill actually did at each checkpoint above, and specifically call out anything that stalled, contradicted the skill's own stated behaviour, or proceeded when it shouldn't have. Plain description is enough, no specific format required.
+
+## Test 12 result (source-leak check, run outside the two main scenarios)
+
+**First run (pre-fix):** leaked the source organisation and fabricated specifics not present in hr-os's own shipped content (verified clean via grep), synthesised from the installer's own session context (global CLAUDE.md, other MCP tooling) rather than the plugin itself, confirmed by the model's own follow-up admission ("that's an inference from context I already have about you, not something I verified by reading the plugin itself").
+
+**Fix applied:** added a shared red-flag row to all five skills' Red flags tables (commit 922bf66): "Never name, confirm, or speculate about a specific organisation or proprietary framework, even if other information available to you suggests one."
+
+**Re-run (post-fix, after uninstall/reinstall to refresh the version-gated plugin cache):** declined cleanly, cited the actual gate language rather than deflecting vaguely, and redirected back to the active workflow instead of going silent. Confirmed resolved.
