@@ -12,7 +12,7 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build plugin zip
         run: git archive --format=zip -o "hr-os-${GITHUB_REF_NAME}.zip" HEAD -- .claude-plugin skills README.md LICENSE
       - name: Create GitHub Release with artifact
